@@ -1,6 +1,4 @@
 let clickCount = 0;
-const gift = document.getElementById('gift');
-const giftHint = document.getElementById('gift-hint');
 
 const phrases = [
     "Oops 🤭",
@@ -18,30 +16,42 @@ const colors = [
     "#002b16"  
 ];
 
-if (gift && giftHint) {
-    gift.addEventListener('click', function() {
-        clickCount++;
+// دالة الحركة والهروب عند النقر على الهدية
+function moveGift() {
+    clickCount++;
+    const gift = document.getElementById('gift');
+    const giftHint = document.getElementById('gift-hint');
+    
+    if (clickCount <= 4) {
+        if (giftHint) giftHint.innerText = phrases[clickCount - 1];
+        document.body.style.backgroundColor = colors[clickCount - 1];
         
-        if (clickCount <= 4) {
-            giftHint.innerText = phrases[clickCount - 1];
-            document.body.style.backgroundColor = colors[clickCount - 1];
-            
-            const randomX = Math.floor(Math.random() * (window.innerWidth - 150));
-            const randomY = Math.floor(Math.random() * (window.innerHeight - 150));
+        // حساب إحداثيات عشوائية بعيداً عن الأطراف
+        const randomX = Math.floor(Math.random() * (window.innerWidth - 120));
+        const randomY = Math.floor(Math.random() * (window.innerHeight - 120));
+        
+        if (gift) {
             gift.style.position = 'fixed';
             gift.style.left = randomX + 'px';
             gift.style.top = randomY + 'px';
-            
-        } else if (clickCount === 5) {
-            giftHint.innerText = phrases[4];
-            document.body.style.backgroundColor = colors[4];
-            
-            gift.style.position = 'static';
-            gift.innerHTML = <br><button class="btn" onclick="nextStep(2)">my gift 🎁</button>;
         }
-    });
+        
+    } else if (clickCount === 5) {
+        if (giftHint) giftHint.innerText = phrases[4];
+        document.body.style.backgroundColor = colors[4];
+        
+        if (gift) {
+            gift.style.position = 'static';
+            // إظهار زر الانتقال للمقلب
+            gift.innerHTML = <br><button class="btn" onclick="nextStep(2)">my gift 🎁</button>;
+            // إزالة خاصية النقر حتى لا يتحرك الزر
+            gift.removeAttribute('onclick');
+            gift.style.cursor = 'default';
+        }
+    }
 }
 
+// دالة التنقل بين الكروت
 function nextStep(stepNumber) {
     for (let i = 1; i <= 6; i++) {
         const step = document.getElementById('step' + i);
