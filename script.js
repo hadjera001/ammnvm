@@ -1,5 +1,4 @@
 let clickCount = 0;
-
 const phrases = [
     "Oops 🤭",
     "What? 🤨",
@@ -7,7 +6,6 @@ const phrases = [
     "EGHHHHHH 😡",
     "There we go! ✅"
 ];
-
 const colors = [
     "#26001b", 
     "#3a001c", 
@@ -16,7 +14,6 @@ const colors = [
     "#002b16"  
 ];
 
-// دالة الحركة والهروب عند النقر على الهدية
 function moveGift() {
     clickCount++;
     const gift = document.getElementById('gift');
@@ -26,7 +23,6 @@ function moveGift() {
         if (giftHint) giftHint.innerText = phrases[clickCount - 1];
         document.body.style.backgroundColor = colors[clickCount - 1];
         
-        // حساب إحداثيات عشوائية بعيداً عن الأطراف
         const randomX = Math.floor(Math.random() * (window.innerWidth - 120));
         const randomY = Math.floor(Math.random() * (window.innerHeight - 120));
         
@@ -42,16 +38,13 @@ function moveGift() {
         
         if (gift) {
             gift.style.position = 'static';
-            // إظهار زر الانتقال للمقلب
             gift.innerHTML = <br><button class="btn" onclick="nextStep(2)">my gift 🎁</button>;
-            // إزالة خاصية النقر حتى لا يتحرك الزر
             gift.removeAttribute('onclick');
             gift.style.cursor = 'default';
         }
     }
 }
 
-// دالة التنقل بين الكروت
 function nextStep(stepNumber) {
     for (let i = 1; i <= 6; i++) {
         const step = document.getElementById('step' + i);
