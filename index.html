@@ -1,49 +1,33 @@
-function moveGift() {
-            clickCount++;
-            const gift = document.getElementById('gift');
-            const giftHint = document.getElementById('gift-hint');
-            
-            if (clickCount <= 2) {
-                // المرة الأولى والثانية: الهدية تهرب
-                if (giftHint) giftHint.innerText = phrases[clickCount - 1];
-                document.body.style.backgroundColor = colors[clickCount - 1];
-                
-                // حساب عشوائي بسيط ومضمون للهروب
-                const randomX = Math.floor(Math.random() * (window.innerWidth - 150));
-                const randomY = Math.floor(Math.random() * (window.innerHeight - 150));
-                
-                if (gift) {
-                    gift.style.position = 'fixed';
-                    gift.style.left = randomX + 'px';
-                    gift.style.top = randomY + 'px';
-                }
-                
-            } else {
-                // المرة الثالثة: تتوقف ويظهر زر فتح الهدية والمقلب
-                if (giftHint) giftHint.innerText = "There we go! ✅";
-                document.body.style.backgroundColor = "#002b16";
-                
-                if (gift) {
-                    gift.style.position = 'static';
-                    gift.innerHTML = <br><button class="btn" onclick="nextStep(2)">my gift 🎁</button>;
-                    gift.removeAttribute('onclick');
-                    gift.style.cursor = 'default';
-                }
-            }
-        }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Youssef ✨</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-        function nextStep(stepNumber) {
-            for (let i = 1; i <= 6; i++) {
-                const step = document.getElementById('step' + i);
-                if (step) step.classList.add('hidden');
-            }
-            const nextTarget = document.getElementById('step' + stepNumber);
-            if (nextTarget) nextTarget.classList.remove('hidden');
-            
-            if (stepNumber > 2) {
-                document.body.style.backgroundColor = "#1a000d";
-            }
-        }
-    </script>
+    <div id="step1" class="card">
+        <p class="greeting-text">Hello! 👋</p>
+        <button class="btn" onclick="nextStep(2)">Press the button</button>
+    </div>
+
+    <div id="step2" class="card hidden">
+        <p>I wanted to surprise you with something even better than this, but I couldn't. The first version was working really well, but yesterday everything broke, and that made me a bit worried and disappointed. So I wanted to at least fix it, but I couldn't. This is the best I managed to do.</p>
+        <button class="btn" onclick="nextStep(3)">Next</button>
+    </div>
+
+    <div id="step3" class="card hidden">
+        <p class="anyway-text">Anyway...</p>
+        <button class="btn" onclick="nextStep(4)">Click here ✨</button>
+    </div>
+
+    <div id="step4" class="card final-card hidden">
+        <h1>HAPPY BIRTHDAY YOUSSEF 🎉🎂</h1>
+        <p class="sub-text">Wishing you the absolute best year ahead! 🌟</p>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
