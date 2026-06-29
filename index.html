@@ -1,106 +1,31 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Gift</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .gift-container {
-            font-size: 80px;
-            cursor: pointer;
-            display: inline-block;
-            transition: all 0.2s ease;
-            user-select: none;
-            margin-top: 20px;
-            position: relative;
-        }
-    </style>
-</head>
-<body>
+<!-- المرحلة 1: الهدية الهاربة -->
+<div id="step1" class="card">
+    <h2>اضغط على الهدية لفتح مفاجأتك! 🎁</h2>
+    <div id="gift" class="gift-container">🎁</div>
+</div>
 
-    <div id="step1" class="card">
-        <h2 id="gift-hint">Take your gift 🎁</h2>
-        <div id="gift" class="gift-container" onclick="moveGift()">🎁</div>
-    </div>
+<!-- المرحلة 2: Do you think there is something? -->
+<div id="step2" class="card hidden">
+    <div class="scary-text">Do you think there is something? 🤔</div>
+    <button class="btn" onclick="nextStep(3)">نعم؟</button>
+</div>
 
-    <div id="step2" class="card hidden">
-        <div class="scary-text">Did you actually think there was a gift? 🤔</div>
-        <button class="btn" onclick="nextStep(3)">Next</button>
-    </div>
+<!-- المرحلة 3: naah go to sleep -->
+<div id="step3" class="card hidden">
+    <div class="scary-text">naah go to sleep 😴</div>
+    <button class="btn" onclick="nextStep(4)">انتظر لحظة..</button>
+</div>
 
-    <div id="step3" class="card hidden">
-        <div class="scary-text">I'm too poor for that, ngl 😞</div>
-        <button class="btn" onclick="nextStep(4)">Next</button>
-    </div>
+<!-- المرحلة 4: just kidding -->
+<div id="step4" class="card hidden">
+    <div class="scary-text">just kidding 😜</div>
+    <button class="btn" onclick="nextStep(5)">أرني المفاجأة الحقيقية! ✨</button>
+</div>
 
-    <div id="step4" class="card hidden">
-        <div class="scary-text">So I made this for you 😀</div>
-        <button class="btn" onclick="nextStep(5)">Next</button>
-    </div>
-
-    <div id="step5" class="card hidden">
-        <div class="scary-text">meh anyways...</div>
-        <button class="btn" onclick="nextStep(6)">Click here ✨</button>
-    </div>
-
-    <div id="step6" class="card final-card hidden">
-        <h1>HAPPY BIRTHDAY OR IDK!!! 🎉🎉🎉🎉💟</h1>
-        <h2>كل عام وأنت بخير! ✨</h2>
-        <p>أتمنى لك عاماً سعيداً ومليئاً بكل الأشياء الجميلة.</p>
-    </div>
-
-    <script>
-        let clickCount = 0;
-        // العبارات والألوان للمرتين فقط
-        const phrases = ["Oops 🤭", "What? 🤨"];
-        const colors = ["#26001b", "#3a001c"];
-
-        function moveGift() {
-            clickCount++;
-            const gift = document.getElementById('gift');
-            const giftHint = document.getElementById('gift-hint');
-            
-            if (clickCount <= 2) {
-                // الحركة الأولى والثانية: الهدية تهرب وتتغير الخلفية
-                if (giftHint) giftHint.innerText = phrases[clickCount - 1];
-                document.body.style.backgroundColor = colors[clickCount - 1];
-                
-                const randomX = Math.floor(Math.random() * (window.innerWidth - 150));
-                const randomY = Math.floor(Math.random() * (window.innerHeight - 150));
-                
-                if (gift) {
-                    gift.style.position = 'fixed';
-                    gift.style.left = randomX + 'px';
-                    gift.style.top = randomY + 'px';
-                }
-                
-            } else {
-                // النقرة الثالثة: تتوقف الهدية ويظهر الزر فوراً!
-                if (giftHint) giftHint.innerText = "There we go! ✅";
-                document.body.style.backgroundColor = "#002b16";
-                
-                if (gift) {
-                    gift.style.position = 'static';
-                    gift.innerHTML = <br><button class="btn" onclick="nextStep(2)">my gift 🎁</button>;
-                    gift.removeAttribute('onclick');
-                    gift.style.cursor = 'default';
-                }
-            }
-        }
-
-        function nextStep(stepNumber) {
-            for (let i = 1; i <= 6; i++) {
-                const step = document.getElementById('step' + i);
-                if (step) step.classList.add('hidden');
-            }
-            const nextTarget = document.getElementById('step' + stepNumber);
-            if (nextTarget) nextTarget.classList.remove('hidden');
-            
-            if (stepNumber > 2) {
-                document.body.style.backgroundColor = "#1a000d";
-            }
-        }
-    </script>
-</body>
-</html>
+<!-- المرحلة 5: Happy Birthday الحقيقية -->
+<div id="step5" class="card hidden">
+    <h1>Happy Birthday! 🎈</h1>
+    <h2>إلى صديقي العزيز [اسم صديقك] ✨</h2> 
+    <p>في هذا اليوم المميز، أتمنى لك عاماً مليئاً بالنجاح، السعادة، وتحقيق كل الطموحات والأمنيات.</p>
+    <p style="margin-top: 30px; font-style: italic; color: #ffb3d9;">"دمت لي صديقاً رائعاً وسنداً لا يميل. كل عام وأنت بخير!" 🎂</p>
+</div>
