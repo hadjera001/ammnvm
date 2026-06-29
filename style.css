@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1a000d;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    transition: background-color 0.4s ease;
+}
+
+.card {
+    background-color: #2d0016;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid #ff3399;
+    max-width: 500px;
+    width: 90%;
+    transition: all 0.3s ease;
+}
+
+.final-card {
+    border: 2px dashed #ff3399;
+    background-color: #1c0024; 
+}
+
+.gift-container {
+    font-size: 80px;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.2s ease;
+    user-select: none;
+    margin-top: 20px;
+}
+
+.scary-text {
+    font-size: 2.2rem;
+    color: #ff99cc;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+h1 {
+    color: #ff3399;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #ff99cc;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+.btn {
+    background-color: #ff3399;
+    color: white;
+    border: none;
+    padding: 12px 35px;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 51, 153, 0.4);
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #ff0080;
+    transform: scale(1.05);
+}
+
+.hidden {
+    display: none !important;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #ff3399; }
+    to { text-shadow: 0 0 20px #ff3399, 0 0 30px #ff0080; }
+}
