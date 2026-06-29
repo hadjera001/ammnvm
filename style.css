@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #1a000d;
+    background-color: #1a000d; /* خلفية برغندي فخمة */
     color: #ffffff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
@@ -10,8 +10,9 @@ body {
     height: 100vh;
     text-align: center;
     overflow: hidden;
-    transition: background-color 0.4s ease;
+    direction: rtl;
 }
+
 .card {
     background-color: #2d0016;
     padding: 40px;
@@ -20,60 +21,68 @@ body {
     border: 1px solid #ff3399;
     max-width: 500px;
     width: 90%;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 }
-.final-card {
-    border: 2px dashed #ff3399;
-    background-color: #1c0024; 
-}
+
+/* تنسيق الهدية */
 .gift-container {
     font-size: 80px;
     cursor: pointer;
     display: inline-block;
-    transition: all 0.2s ease;
-    user-select: none;
-    margin-top: 20px;
+    transition: all 0.3s ease;
+    position: relative;
 }
+
+/* تنسيق النصوص الكبيرة للمراحل */
 .scary-text {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     color: #ff99cc;
     margin-bottom: 30px;
-    font-weight: bold;
+    direction: ltr;
 }
+
 h1 {
     color: #ff3399;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+    font-size: 3rem;
+    margin-bottom: 10px;
     animation: glow 1.5s ease-in-out infinite alternate;
 }
+
 h2 {
     font-size: 1.8rem;
+    margin-bottom: 20px;
     color: #ff99cc;
-    margin-bottom: 10px;
 }
+
 p {
     font-size: 1.2rem;
-    color: #e0e0e0;
     line-height: 1.6;
+    color: #e0e0e0;
 }
+
+/* تنسيق الأزرار للانتقال */
 .btn {
     background-color: #ff3399;
     color: white;
     border: none;
-    padding: 12px 35px;
+    padding: 12px 30px;
     font-size: 1.2rem;
     border-radius: 25px;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(255, 51, 153, 0.4);
+    box-shadow: 0 5px 15px rgba(25px, 51, 153, 0.4);
     transition: 0.3s;
 }
+
 .btn:hover {
     background-color: #ff0080;
     transform: scale(1.05);
 }
+
+/* إخفاء المراحل في البداية */
 .hidden {
     display: none !important;
 }
+
 @keyframes glow {
     from { text-shadow: 0 0 10px #ff3399; }
     to { text-shadow: 0 0 20px #ff3399, 0 0 30px #ff0080; }
