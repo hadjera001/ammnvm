@@ -1,59 +1,34 @@
 let clickCount = 0;
-const phrases = [
-    "Oops 🤭",
-    "What? 🤨",
-    "Aa try again maybe? 👀",
-    "EGHHHHHH 😡",
-    "There we go! ✅"
-];
-const colors = [
-    "#26001b", 
-    "#3a001c", 
-    "#120024", 
-    "#4a0000", 
-    "#002b16"  
-];
+const gift = document.getElementById('gift');
 
-function moveGift() {
+// كود تحريك الهدية أو الانتقال للمرحلة التالية
+gift.addEventListener('click', function() {
     clickCount++;
-    const gift = document.getElementById('gift');
-    const giftHint = document.getElementById('gift-hint');
     
-    if (clickCount <= 4) {
-        if (giftHint) giftHint.innerText = phrases[clickCount - 1];
-        document.body.style.backgroundColor = colors[clickCount - 1];
+    if (clickCount === 1 || clickCount === 2) {
+        // توليد إحداثيات عشوائية لتهرب الهدية داخل الشاشة
+        const randomX = Math.floor(Math.random() * (window.innerWidth - 150));
+        const randomY = Math.floor(Math.random() * (window.innerHeight - 150));
         
-        const randomX = Math.floor(Math.random() * (window.innerWidth - 120));
-        const randomY = Math.floor(Math.random() * (window.innerHeight - 120));
-        
-        if (gift) {
-            gift.style.position = 'fixed';
-            gift.style.left = randomX + 'px';
-            gift.style.top = randomY + 'px';
-        }
-        
-    } else if (clickCount === 5) {
-        if (giftHint) giftHint.innerText = phrases[4];
-        document.body.style.backgroundColor = colors[4];
-        
-        if (gift) {
-            gift.style.position = 'static';
-            gift.innerHTML = <br><button class="btn" onclick="nextStep(2)">my gift 🎁</button>;
-            gift.removeAttribute('onclick');
-            gift.style.cursor = 'default';
-        }
+        // تحويل الهدية إلى وضعية مطلقة لتتحرك بحرية
+        gift.style.position = 'fixed';
+        gift.style.left = randomX + 'px';
+        gift.style.top = randomY + 'px';
+    } else if (clickCount === 3) {
+        // في الضغطة الثالثة، ننتقل للمرحلة الثانية مباشرة
+        nextStep(2);
     }
-}
+});
 
+// دالة التنقل بين المراحل
 function nextStep(stepNumber) {
-    for (let i = 1; i <= 6; i++) {
-        const step = document.getElementById('step' + i);
-        if (step) step.classList.add('hidden');
-    }
-    const nextTarget = document.getElementById('step' + stepNumber);
-    if (nextTarget) nextTarget.classList.remove('hidden');
-    
-    if (stepNumber > 2) {
-        document.body.style.backgroundColor = "#1a000d";
-    }
+    // إخفاء جميع الكروت أولاً
+    document.getElementById('step1').classList.add('hidden');
+    document.getElementById('step2').classList.add('hidden');
+    document.getElementById('step3').classList.add('hidden');
+    document.getElementById('step4').classList.add('hidden');
+    document.getElementById('step5').classList.add('hidden');
+
+    // إظهار الكرت المطلوب فقط
+    document.getElementById('step' + stepNumber).classList.remove('hidden');
 }
